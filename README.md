@@ -1,4 +1,4 @@
-# Pyfbow , A python wrapper of [DBow3](https://github.com/rmsalinas/DBow3) with pybind11 
+# PyDBow3 , A python wrapper of [DBow3](https://github.com/rmsalinas/DBow3) with pybind11 
 
 # Build and Install
 
