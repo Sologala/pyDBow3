@@ -13,3 +13,5 @@ install_local
 *.voc
 *.yml
 *.gz
+
+*.bin
