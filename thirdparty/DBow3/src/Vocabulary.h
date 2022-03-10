@@ -462,6 +462,14 @@ public:
   // for debug (REMOVE)
   inline Node *getNodeWord(uint32_t idx) { return m_words[idx]; }
 
+  std::map<uint32_t, uint32_t> getNodeId2WordId() {
+    std::map<uint32_t, uint32_t> ret;
+    for (Node &node : m_nodes) {
+      ret[node.id] = node.word_id;
+    }
+    return ret;
+  }
+
   inline uint32_t getWordSize() { return m_words.size(); }
 };
 

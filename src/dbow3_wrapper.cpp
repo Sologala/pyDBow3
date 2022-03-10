@@ -6,6 +6,7 @@
 #include <pybind11/cast.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <sys/types.h>
 #include <tuple>
 namespace py = pybind11;
 
@@ -102,6 +103,9 @@ public:
 
   bool _verbose = false;
   cv::Mat getWord(uint32_t word_id) { return voc->getWord(word_id); }
+  std::map<uint32_t, uint32_t> wordId2NodeId() {
+    return voc->getNodeId2WordId();
+  }
   uint32_t getDepth() { return voc->getDepthLevels(); }
   uint32_t getDescriptorSize() { return voc->getDescritorSize(); }
   uint32_t getWordSize() { return voc->getWordSize(); }
@@ -139,6 +143,7 @@ PYBIND11_MODULE(pyDBow3, m) {
       .def("getDescriptorSize", &Vocabulary::getDescriptorSize)
       .def("getDepth", &Vocabulary::getDepth)
       .def("getWord", &Vocabulary::getWord, "word_id"_a)
+      .def("wordIdd2NodeId", &Vocabulary::wordId2NodeId)
       .def("__str__", &Vocabulary::log)
       .def("clear", &Vocabulary::clear);
 }
