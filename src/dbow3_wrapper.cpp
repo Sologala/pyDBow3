@@ -37,6 +37,17 @@ static std::map<std::string, DBoW3::ScoringType> all_score_method{
     {"DOT_PRODUCT", DBoW3::ScoringType::DOT_PRODUCT},
     {"BHATTACHARYYA", DBoW3::ScoringType::BHATTACHARYYA},
     {"KL", DBoW3::ScoringType::KL}};
+static std::map<DBoW3::WeightingType, std::string> rvt_all_weight_method{
+    {DBoW3::WeightingType::TF_IDF, "TF_IDF"},
+    {DBoW3::WeightingType::BINARY, "BINARY"},
+    {DBoW3::WeightingType::IDF, "IDF"},
+    {DBoW3::WeightingType::TF, "TF"}};
+static std::map<DBoW3::ScoringType, std::string> rvt_all_score_method{
+    {DBoW3::ScoringType::L1_NORM, "L1_NORM"},
+    {DBoW3::ScoringType::L2_NORM, "L2_NORM"},
+    {DBoW3::ScoringType::DOT_PRODUCT, "DOT_PRODUCT"},
+    {DBoW3::ScoringType::BHATTACHARYYA, "BHATTACHARYYA"},
+    {DBoW3::ScoringType::KL, "KL"}};
 
 class Vocabulary {
 public:
@@ -94,6 +105,18 @@ public:
   uint32_t getDepth() { return voc->getDepthLevels(); }
   uint32_t getDescriptorSize() { return voc->getDescritorSize(); }
   uint32_t getWordSize() { return voc->getWordSize(); }
+
+  std::string log() {
+    char str_buffer[256] = {};
+    sprintf(str_buffer,
+            "nwords: %d\ndepths: %d\ndescriptor size %d \nK: %d \nweight "
+            "method: %s\nscore method: %s\n",
+            getWordSize(), getDepth(), getDescriptorSize(),
+            voc->getBranchingFactor(),
+            rvt_all_weight_method[voc->getWeightingType()].c_str(),
+            rvt_all_score_method[voc->getScoringType()].c_str());
+    return std::string(str_buffer);
+  }
   DBoW3::Vocabulary *voc;
 };
 
@@ -116,5 +139,6 @@ PYBIND11_MODULE(pyDBow3, m) {
       .def("getDescriptorSize", &Vocabulary::getDescriptorSize)
       .def("getDepth", &Vocabulary::getDepth)
       .def("getWord", &Vocabulary::getWord, "word_id"_a)
+      .def("__str__", &Vocabulary::log)
       .def("clear", &Vocabulary::clear);
 }
