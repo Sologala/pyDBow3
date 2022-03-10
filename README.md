@@ -1,27 +1,17 @@
-# Pyfbow , A python wrapper of [fbow](https://github.com/rmsalinas/fbow) with pybind11 
-
-> FBOW (Fast Bag of Words) is an extremmely optimized version of the DBow2/DBow3 libraries. The library is highly optimized to speed up the Bag of Words creation using AVX,SSE and MMX instructions. In loading a vocabulary, fbow is ~80x faster than DBOW2 (see tests directory and try). In transforming an image into a bag of words using on machines with AVX instructions, it is ~6.4x faster.
-
-
-Unlike the [work](https://github.com/vik748/pyfbow) by @vik748, this project only depends `opencv` (the version of 3.* and 4.* are both compatible).Instead of `boost_python`, I use [pybind11](https://github.com/pybind/pybind11.git), a header-only python wrap library to wrap python and c++ . For seek of the ablity of convertation between `cv::Mat` and `np.ndarray`, @edmBernard 's work is incorporated.  
+# Pyfbow , A python wrapper of [DBow3](https://github.com/rmsalinas/DBow3) with pybind11 
 
 # Build and Install
 
 1. Clone this repo 
 ```shell
-git clone --recurse-submodules  https://github.com/Sologala/pyfbow.git
-cd pyfbow
+git clone --recurse-submodules  https://github.com/Sologala/pyDBow3.git
+cd pyDBow3
 ```
-2. build fbow
-```shell
-./build_fbow.sh
-```
-
-3. install with python
+2. install with python
 ```shell
 python3 setup.py develop
 ```
-You can also install `pyfbow` into python's site-packages by
+You can also install `pyDBow3` into python's site-packages by
 ```shell
 python3 setup.py install
 ```
@@ -33,10 +23,8 @@ After installed by python , A manifest file named `files.txt` will be created.
 xargs rm -rf < files.txt
 ```
 
+Or you can uninstall pyDBow3 with `pip`
+
 # Quick Start 
 
-
-You can create a vocabulary by python script.
-```shell
-python3 tests/create_voc.py ./data -o out.voc
-```
+Please ref to [this notebook](tests/test_wrap.ipynb)
