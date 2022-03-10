@@ -1,7 +1,7 @@
 
 #include "BowVector.h"
 #include "FeatureVector.h"
-#include <_types/_uint32_t.h>
+
 #include <iostream>
 #include <pybind11/cast.h>
 #include <pybind11/pybind11.h>

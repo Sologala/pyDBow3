@@ -10,7 +10,6 @@
 #ifndef __D_T__VOCABULARY__
 #define __D_T__VOCABULARY__
 
-#include <_types/_uint32_t.h>
 #include <cassert>
 
 #include "BowVector.h"
